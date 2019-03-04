@@ -79,12 +79,13 @@ class Trip {
 
     cardContainer.appendChild(card)
     card.addEventListener('click', () => {
-      trip.renderShow()
+      this.renderShow.bind(this)
     })
   }
 
   renderShow () {
-    let mainDiv = document.querySelector('#main-container')
-    mainDiv.innerHTML = ''
+    let mainDiv = document.querySelector("#main-container")
+    mainDiv.innerHTML = ""
+    HTMLHelper.renderShowPage()
   }
 }
