@@ -80,10 +80,13 @@ class HTMLHelper {
     <div class='tile is-ancestor'>
      <div class='tile is-parent'>
        <article class="tile is-child notification">
-         <p class="title">Wide tile</p>
-         <div id="card-container" class="column">
-           <!-- this is where trip cards end up -->
-         </div>
+         <p class="title">Entries</p>
+         <ul>
+         <li>Day 1</li>
+         <li>Day 2</li>
+         <li>Day 3</li>
+         <li>Day 4</li>
+         </ul>
        </article>
      </div>
      <div class="tile is-parent">
