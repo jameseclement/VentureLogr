@@ -13,6 +13,7 @@ class Entry {
     let entryLi = document.createElement("li")
     entryLi.innerHTML = `${entry.title}`
     entryUl.appendChild(entryLi)
+    // entryLi.addEventListener(()=>renderEntryShow(trip))
   })
 }
 }
