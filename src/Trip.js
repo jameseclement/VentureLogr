@@ -14,12 +14,12 @@ class Trip {
     .then(trips => {
       trips.forEach(trip => {
         let tripInstance = new Trip(trip)
-        tripInstance.render(trip)
+        tripInstance.renderCard(trip)
       })
     })
   }
 
-  render (trip) {
+  renderCard (trip) {
     let cardContainer = document.querySelector('#card-container')
     let card = document.createElement('div')
     card.classList.add('card', 'column', 'is-3')
@@ -31,7 +31,7 @@ class Trip {
       </figure>
     </div>
     <div class="card-content">
-      <p class="title is-4">${this.title}</p>
+      <p class="title is-4 is-centered">${this.title}</p>
       <p class="subtitle is-6">${this.date}</p>
     </div>
 
@@ -44,7 +44,12 @@ class Trip {
 
     cardContainer.appendChild(card)
     card.addEventListener('click', () => {
-      console.log('this would take me to the trip show page')
+      trip.renderShow()
     })
+  }
+
+  renderShow () {
+    let mainDiv = document.querySelector('#main-container')
+    mainDiv.innerHTML = ''
   }
 }
