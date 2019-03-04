@@ -78,9 +78,7 @@ class Trip {
     `
 
     cardContainer.appendChild(card)
-    card.addEventListener('click', () => {
-      this.renderShow.bind(this)
-    })
+    card.addEventListener('click', this.renderShow.bind(this))
   }
 
   renderShow () {
