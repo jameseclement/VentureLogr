@@ -78,7 +78,7 @@ class HTMLHelper {
     </div>
 
     <div class='tile is-ancestor'>
-     <div class='tile is-parent'>
+     <div class='tile column is-parent is-6'>
        <article class="tile is-child notification">
          <p class="title">Entries</p>
          <ul>
@@ -89,15 +89,33 @@ class HTMLHelper {
          </ul>
        </article>
      </div>
-     <div class="tile is-parent">
-       <article class="tile is-child notification">
-         <p class="title">Wide tile</p>
-         <div id="card-container" class="column">
-           <!-- this is where trip cards end up -->
-         </div>
-       </article>
-     </div>
-   </div>
+     <div class="tile columns column is-6 is-multiline">
+      <div class="tile column is-parent is-6">
+        <article class="tile is-child notification">
+          <p class="title">Photo 1</p>
+          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+      <div class="tile column is-parent is-6">
+        <article class="tile is-child notification">
+          <p class="title">Photo 2</p>
+          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+      <div class="tile column is-parent is-6">
+        <article class="tile is-child notification">
+          <p class="title">Photo 3</p>
+          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+      <div class="tile column is-parent is-6">
+        <article class="tile is-child notification">
+          <p class="title">Photo 4</p>
+          <p class="subtitle">Subtitle</p>
+        </article>
+      </div>
+    </div>
+  </div>
     `
   }
 
