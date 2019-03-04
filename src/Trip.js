@@ -18,7 +18,6 @@ class Trip {
       })
     })
   }
-
   render (trip) {
     let cardContainer = document.querySelector('#card-container')
     let card = document.createElement('div')
@@ -42,9 +41,18 @@ class Trip {
     </div>
     `
 
+
     cardContainer.appendChild(card)
-    card.addEventListener('click', () => {
-      console.log('this would take me to the trip show page')
-    })
+    card.addEventListener('click', this.renderShow.bind(this))
+
   }
+
+  renderShow (){
+    let mainDiv = document.querySelector("#main-container")
+    mainDiv.innerHTML = ""
+    HTMLHelper.renderShowPage()
+  }
+
+
+
 }
