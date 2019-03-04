@@ -6,6 +6,7 @@ class Trip {
     this.location = trip.location
     this.description = trip.description
     this.photo = trip.photo
+    this.entries = trip.entries
   }
 
   static fetchTrips () {
@@ -84,6 +85,12 @@ class Trip {
   renderShow () {
     let mainDiv = document.querySelector("#main-container")
     mainDiv.innerHTML = ""
-    HTMLHelper.renderShowPage()
+    HTMLHelper.renderShowPage(this)
   }
+
+  
+
+
+
+
 }

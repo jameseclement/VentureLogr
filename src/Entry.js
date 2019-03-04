@@ -7,7 +7,12 @@ class Entry {
     this.trip_id = entry.trip_id
   }
 
-  render () {
-
-  }
+  static renderEntryList(trip) {
+    trip.entries.forEach((entry) => {
+    let entryUl = document.querySelector("#entry-ul")
+    let entryLi = document.createElement("li")
+    entryLi.innerHTML = `${entry.title}`
+    entryUl.appendChild(entryLi)
+  })
+}
 }
