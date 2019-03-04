@@ -19,6 +19,41 @@ class Trip {
     })
   }
 
+  static postTrip (e) {
+    e.preventDefault()
+    let title = document.querySelectorAll('input[type="text"]')[0].value
+    let date = document.querySelector('.is-hidden').value
+    let location = document.querySelector('select').value
+    let description = document.querySelector('textarea').value
+    let photo = document.querySelectorAll('input[type="text"]')[3].value
+    let data = {
+      title: title,
+      date: date,
+      location: location,
+      description: description,
+      photo: photo
+    }
+    fetch('http://localhost:3000/api/v1/trips', {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(trip => {
+      let tripInstance = new Trip(trip)
+      tripInstance.renderCard(trip)
+      document.querySelectorAll('input[type="text"]')[0].value = ''
+      document.querySelectorAll('input[type="text"]')[1].value = ''
+      document.querySelector('select').value = ''
+      document.querySelector('textarea').value = ''
+      document.querySelectorAll('input[type="text"]')[3].value = ''
+    })
+
+  }
+
   renderCard (trip) {
     let cardContainer = document.querySelector('#card-container')
     let card = document.createElement('div')

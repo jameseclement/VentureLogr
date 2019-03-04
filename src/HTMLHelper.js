@@ -21,7 +21,7 @@ class HTMLHelper {
           <div class="tile is-parent">
             <article class="tile is-child notification">
               <p class="title">Add a Trip</p>
-              <div id="add-trip-form" class="subtitle">
+              <div id="add-trip-form">
               </div>
             </article>
           </div>
@@ -43,16 +43,8 @@ class HTMLHelper {
     <div class="tile is-ancestor">
       <div class="tile is-parent">
         <article class="tile is-child notification">
-          <p class="title">Wide tile</p>
-          <div id="card-container" class="column">
-            <!-- this is where trip cards end up -->
-          </div>
-        </article>
-      </div>
-      <div class="tile is-parent">
-        <article class="tile is-child notification">
-          <p class="title">Wide tile</p>
-          <div id="card-container" class="column">
+          <p class="title">Trips:</p>
+          <div id="card-container" class="columns is-multiline">
             <!-- this is where trip cards end up -->
           </div>
         </article>
@@ -63,9 +55,6 @@ class HTMLHelper {
 
   static renderForm () {
     let formContainer = document.querySelector('#add-trip-form')
-    // let submitButton = document.createElement('input')
-    // submitButton.type = 'submit'
-    // submitButton.classList.add('button', 'is-primary')
 
     formContainer.innerHTML = `
     <div class="field">
@@ -105,7 +94,16 @@ class HTMLHelper {
       </div>
     </div>
 
+
     <div class="field">
+      <label class="label">Photo Url:</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Enter the url to your photo.">
+      </div>
+    </div>
+
+    <!-- use above code until we figure out files -->
+    <!-- <div class="field">
       <label class="label">Photos:</label>
       <div class="file is-small">
         <label class="file-label">
@@ -120,11 +118,11 @@ class HTMLHelper {
           </span>
         </label>
       </div>
-    </div>
+    </div> -->
 
     <div class="field is-grouped">
       <div class="control">
-        <button class="button is-link">Submit</button>
+        <button id="trip-addBtn" class="button is-link" type="submit">Submit</button>
       </div>
       <div class="control">
         <button class="button is-text">Cancel</button>
@@ -133,10 +131,10 @@ class HTMLHelper {
     `
 
     // Initialize all input of date type.
-    var calendars = bulmaCalendar.attach('[type="date"]');
+    let calendars = bulmaCalendar.attach('[type="date"]');
 
     // Loop on each calendar initialized
-    for(var i = 0; i < calendars.length; i++) { // Add listener to date:selected event calendars[i].on('date:selected',
+    for(let i = 0; i < calendars.length; i++) { // Add listener to date:selected event calendars[i].on('date:selected',
       date => {
         console.log(date)
       }
