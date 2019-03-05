@@ -264,7 +264,7 @@ class HTMLHelper {
           <article class="tile is-child notification">
 
             <figure class="image is-4by3">
-              <img id="sample-image-1" src=${entry.photos[0].url}>
+              <img id="sample-image-1">
             </figure>
             <h6 id="sample-caption-1" class="subtitle is-6 has-text-right">${entry.photos[0].caption}</h6>
           </article>
@@ -273,7 +273,7 @@ class HTMLHelper {
           <article class="tile is-child notification">
 
             <figure class="image is-4by3">
-              <img id="sample-image-2" src="${entry.photos[1].url}">
+              <img id="sample-image-2" >
             </figure>
             <h6 id="sample-caption-2" class="subtitle is-6 has-text-right">${entry.photos[1].caption} <h6>
           </article>
@@ -282,7 +282,7 @@ class HTMLHelper {
           <article class="tile is-child notification">
 
             <figure class="image is-4by3">
-              <img id="sample-image-3" src="${entry.photos[1].url}">
+              <img id="sample-image-3">
 
             </figure>
             <h6 id="sample-caption-3" class="subtitle is-6 has-text-right">${entry.photos[1].caption}</h6>
@@ -292,7 +292,7 @@ class HTMLHelper {
           <article class="tile is-child notification">
 
             <figure class="image is-4by3">
-              <img id="sample-image-4" src="${entry.photos[1].url}">
+              <img id="sample-image-4" >
             </figure>
             <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">${entry.photos[1].caption}</h6>
           </article>
@@ -303,6 +303,7 @@ class HTMLHelper {
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0
         Entry.renderEntryList(trip)
+        Photo.renderEntryPhotos(entry)
 
       })
   }

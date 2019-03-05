@@ -18,6 +18,24 @@ class Photo {
 
     })
     })}
+
+
+    static renderEntryPhotos(entry){
+      let image1 = document.querySelector("#sample-image-1")
+      let image2 = document.querySelector("#sample-image-2")
+      let image3 = document.querySelector("#sample-image-3")
+      let image4 = document.querySelector("#sample-image-4")
+      image1.src = entry.photos[0].url
+      image2.src = entry.photos[1].url
+      image3.src = entry.photos[0].url
+      image4.src = entry.photos[1].url
+
+
+
+
+
+
+    }
 }
 
 
