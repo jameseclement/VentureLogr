@@ -4,17 +4,9 @@ class Photo {
     this.caption = this.caption
     this.entry_id = photo.entry_id
   }
-<<<<<<< HEAD
-
-  static fetchSamplePhotos(trip) {
-
-
-    fetch(`http://localhost:3000/api/v1/trips/${trip.id}`)
-=======
 //used to get/show sample photos from a whole trip
     static fetchSamplePhotos(trip) {
       fetch(`http://localhost:3000/api/v1/trips/${trip.id}`)
->>>>>>> de6ee87b7d18f4d5ab83f4e96698a539e10b84d1
     .then(res => res.json())
     .then((trip) => {
 

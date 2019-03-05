@@ -4,6 +4,7 @@ class Entry {
     this.date = entry.date
     this.title = entry.title
     this.story = entry.story
+    this.photos = entry.photos
     this.trip_id = entry.trip_id
   }
 
@@ -20,7 +21,6 @@ class Entry {
   }
 
   static postEntry (e) {
-    debugger
     e.preventDefault()
     let title = document.querySelectorAll('input[type="text"]')[0].value
     let date = document.querySelector('.is-hidden').value

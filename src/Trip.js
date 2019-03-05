@@ -128,7 +128,7 @@ class Trip {
     let entryBtn = document.querySelector('#entry-add-btn')
     let entryCnclBtn = document.querySelector('#entry-add-cancel')
     let save = document.querySelector('#entry-add-save')
-
+    
     entryModalBackground.addEventListener('click', () => {
       entryModal.classList.toggle('is-active')
     })
