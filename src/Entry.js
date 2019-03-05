@@ -12,9 +12,9 @@ class Entry {
     let entryUl = document.querySelector("#entry-ul")
     let entryLi = document.createElement("li")
     let truncatedEntry = entry.story.substring(0,20)
-    entryLi.innerHTML = `${entry.title} - ${truncatedEntry}`
+    entryLi.innerHTML = `${entry.title} - ${truncatedEntry}...`
     entryUl.appendChild(entryLi)
-    entryLi.addEventListener("click", ()=> HTMLHelper.renderEntryShow(entry))
+    entryLi.addEventListener("click", ()=> HTMLHelper.renderEntryShow(entry, trip))
   })
 
 
