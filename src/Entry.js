@@ -11,9 +11,10 @@ class Entry {
     trip.entries.forEach((entry) => {
     let entryUl = document.querySelector("#entry-ul")
     let entryLi = document.createElement("li")
-    entryLi.innerHTML = `${entry.title}`
+    let truncatedEntry = entry.story.substring(0,20)
+    entryLi.innerHTML = `${entry.title} - ${truncatedEntry}`
     entryUl.appendChild(entryLi)
-    // entryLi.addEventListener(()=>renderEntryShow(trip))
+    entryLi.addEventListener("click", ()=> HTMLHelper.renderEntryShow(entry))
   })
 
 

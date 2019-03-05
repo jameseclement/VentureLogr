@@ -220,5 +220,125 @@ class HTMLHelper {
   Entry.renderEntryList(trip)
   Photo.fetchSamplePhotos(trip)
 }
+    static renderEntryShow(entry){
+
+      let container = document.querySelector('#main-container')
+      // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
+      container.innerHTML = `
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical is-parent is-6">
+          <article class="tile is-child notification">
+            <div class="content">
+              <p class="title">Tall tile</p>
+              <p class="subtitle"></p>
+              <div class="content">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna diam, interdum a erat nec, pretium ultricies purus. Donec aliquet at elit nec finibus. Vestibulum fermentum velit eu turpis tincidunt ultricies. Ut consequat, enim a pharetra laoreet, urna massa pulvinar dui, id luctus ante dolor sed sem. Donec fermentum augue sit amet libero dignissim rhoncus. Aliquam volutpat tincidunt lobortis. Morbi rutrum ipsum ut purus pulvinar venenatis. Aliquam venenatis orci in cursus blandit. Sed tempor sed felis porttitor consectetur. In hac habitasse platea dictumst. Ut scelerisque, augue eu volutpat sollicitudin, tortor tellus ultrices libero, vitae pretium diam dolor quis eros. Aliquam nec augue ac dolor vehicula mollis id quis orci.
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin magna diam, interdum a erat nec, pretium ultricies purus. Donec aliquet at elit nec finibus. Vestibulum fermentum velit eu turpis tincidunt ultricies. Ut consequat, enim a pharetra laoreet, urna massa pulvinar dui, id luctus ante dolor sed sem. Donec fermentum augue sit amet libero dignissim rhoncus. Aliquam volutpat tincidunt lobortis. Morbi rutrum ipsum ut purus pulvinar venenatis. Aliquam venenatis orci in cursus blandit. Sed tempor sed felis porttitor consectetur. In hac habitasse platea dictumst. Ut scelerisque, augue eu volutpat sollicitudin, tortor tellus ultrices libero, vitae pretium diam dolor quis eros. Aliquam nec augue ac dolor vehicula mollis id quis orci.
+              
+              </div>
+           </div>
+         </article>
+         <article class="tile is-child box">
+            Edit Trip  Delete Trip
+         </article>
+        </div>
+
+
+        <div class="tile is-vertical is-6">
+            <div class="tile">
+              <div class="tile is-parent is-vertical">
+                  <article class="tile is-child box">
+                    <figure class="image is-4by3">
+                      <img src="http://via.placeholder.com/300">
+                    </figure>
+                  </article>
+                  <article class="tile is-child box">
+
+                  <div class="tile columns column is-multiline">
+                   <div class="tile column is-parent is-3">
+                     <article class="tile is-child notification">
+
+                       <figure class="image is-4by3">
+                         <img id="sample-image-1" src="">
+                       </figure>
+                       <h6 id="sample-caption-1" class="subtitle is-6 has-text-right">Subtitle 6</h6>
+                     </article>
+                   </div>
+                   <div class="tile column is-parent is-3">
+                     <article class="tile is-child notification">
+
+                       <figure class="image is-4by3">
+                         <img id="sample-image-2" src="">
+                       </figure>
+                       <h6 id="sample-caption-2" class="subtitle is-6 has-text-right">Subtitle 6</h6>
+                     </article>
+                   </div>
+                   <div class="tile column is-parent is-3">
+                     <article class="tile is-child notification">
+
+                       <figure class="image is-4by3">
+                         <img id="sample-image-3" src="">
+
+                       </figure>
+                       <h6 id="sample-caption-3" class="subtitle is-6 has-text-right">Subtitle 6</h6>
+                     </article>
+                   </div>
+                   <div class="tile column is-parent is-3">
+                     <article class="tile is-child notification">
+
+                       <figure class="image is-4by3">
+                         <img id="sample-image-4" src="">
+                       </figure>
+                       <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
+                     </article>
+                   </div>
+                   <div class="tile column is-parent is-3">
+                     <article class="tile is-child notification">
+
+                       <figure class="image is-4by3">
+                         <img id="sample-image-4" src="">
+                       </figure>
+                       <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
+                     </article>
+                   </div>
+                   <div class="tile column is-parent is-3">
+                     <article class="tile is-child notification">
+
+                       <figure class="image is-4by3">
+                         <img id="sample-image-4" src="">
+                       </figure>
+                       <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
+                     </article>
+                   </div>
+                   <div class="tile column is-parent is-3">
+                     <article class="tile is-child notification">
+
+                       <figure class="image is-4by3">
+                         <img id="sample-image-4" src="">
+                       </figure>
+                       <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
+                     </article>
+                   </div>
+                   <div class="tile column is-parent is-3">
+                     <article class="tile is-child notification">
+
+                       <figure class="image is-4by3">
+                         <img id="sample-image-4" src="">
+                       </figure>
+                       <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
+                     </article>
+                   </div>
+                 </div>
+                  </article>
+
+            </div>
+          </div>
+      </div>
+    </div>
+
+      `
+}
+
+
 
 }
