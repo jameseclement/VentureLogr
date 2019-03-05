@@ -192,7 +192,7 @@ class HTMLHelper {
         <article class="tile is-child notification">
 
           <figure class="image is-4by3">
-            <img id="sample-image-1" src="">
+            <img id="sample-image-1" class= "sample-image" src="">
           </figure>
           <h6 id="sample-caption-1" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
@@ -201,7 +201,7 @@ class HTMLHelper {
         <article class="tile is-child notification">
 
           <figure class="image is-4by3">
-            <img id="sample-image-2" src="">
+            <img id="sample-image-2" class= "sample-image" src="">
           </figure>
           <h6 id="sample-caption-2" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
@@ -210,7 +210,7 @@ class HTMLHelper {
         <article class="tile is-child notification">
 
           <figure class="image is-4by3">
-            <img id="sample-image-3" src="">
+            <img id="sample-image-3" class= "sample-image" src="">
 
           </figure>
           <h6 id="sample-caption-3" class="subtitle is-6 has-text-right">Subtitle 6</h6>
@@ -219,7 +219,7 @@ class HTMLHelper {
       <div class="tile column is-parent is-6">
         <article class="tile is-child notification">
           <figure class="image is-4by3">
-            <img id="sample-image-4" src="">
+            <img id="sample-image-4" class= "sample-image" src="">
           </figure>
           <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
