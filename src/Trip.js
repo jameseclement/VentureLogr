@@ -6,7 +6,6 @@ class Trip {
     this.location = trip.location
     this.description = trip.description
     this.photo = trip.photo
-    this.entries = trip.entries
   }
 
   static fetchTrips () {
@@ -60,13 +59,6 @@ class Trip {
     let card = document.createElement('div')
     card.classList.add('card', 'column', 'is-3')
 
-    // temporary
-    let delBtn = document.createElement('button')
-    delBtn.classList.add('button', 'is-danger')
-    delBtn.innerText = 'Delete Trip'
-    //
-
-
     card.innerHTML = `
     <div class="card-image">
       <figure class="image is-4by3">
@@ -86,12 +78,6 @@ class Trip {
     `
 
     cardContainer.appendChild(card)
-
-    // temp
-    cardContainer.appendChild(delBtn)
-    delBtn.addEventListener('click', this.deleteTrip.bind(this))
-    //
-
     card.addEventListener('click', this.renderShow.bind(this))
   }
 

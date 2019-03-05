@@ -142,7 +142,7 @@ class HTMLHelper {
   }
 
   static renderShowPage(trip){
-
+    debugger
     let container = document.querySelector('#main-container')
     // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
     container.innerHTML = `
@@ -151,7 +151,7 @@ class HTMLHelper {
         <div class="tile">
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification">
-              <p class="title">Trip Cover Picture</p>
+              <p id="trip-btns" class="title">Trip Cover Picture</p>
               <figure class="image">
                 <img src= ${trip.photo} >
               </figure>
@@ -207,7 +207,6 @@ class HTMLHelper {
       </div>
       <div class="tile column is-parent is-6">
         <article class="tile is-child notification">
-
           <figure class="image is-4by3">
             <img id="sample-image-4" src="">
           </figure>
@@ -215,10 +214,27 @@ class HTMLHelper {
         </article>
       </div>
     </div>
-  </div>
+    </div>
     `
-  Entry.renderEntryList(trip)
-  Photo.fetchSamplePhotos(trip)
-}
+
+    Entry.renderEntryList(trip)
+    Photo.fetchSamplePhotos(trip)
+    HTMLHelper.showTripButtons(trip)
+  }
+
+  static showTripButtons (trip) {
+    let editBtn = document.createElement('button')
+    editBtn.classList.add('button', 'is-warning')
+    editBtn.innerText = 'Delete Trip'
+
+    let delBtn = document.createElement('button')
+    delBtn.classList.add('button', 'is-danger')
+    delBtn.innerText = 'Delete Trip'
+
+    // cardContainer.appendChild(delBtn)
+    delBtn.addEventListener('click', this.deleteTrip.bind(this))
+  }
+
+
 
 }
