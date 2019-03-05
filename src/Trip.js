@@ -6,6 +6,7 @@ class Trip {
     this.location = trip.location
     this.description = trip.description
     this.photo = trip.photo
+    this.entries = trip.entries
   }
 
   static fetchTrips () {
@@ -84,15 +85,98 @@ class Trip {
   renderShow () {
     let mainDiv = document.querySelector("#main-container")
     mainDiv.innerHTML = ""
+    HTMLHelper.renderEditForm(this)
     HTMLHelper.renderShowPage(this)
   }
 
+  btnListener () {
+    let modal = document.querySelector('.modal')
+    let modalBackground = document.querySelector('.modal-background')
+    let modalClose = document.querySelector('#trip-edit-close')
+    let cnclBtn = document.querySelector('#trip-edit-cancel')
+    let editBtn = document.querySelector('#trip-edit-btn')
+    let delBtn = document.querySelector('#trip-del-btn')
+    delBtn.setAttribute('data-confirm', "Are you sure to delete this item?")
+
+    modalBackground.addEventListener('click', () => {
+      modal.classList.toggle('is-active')
+    })
+
+    modalClose.addEventListener('click', () => {
+      modal.classList.toggle('is-active')
+    })
+
+    cnclBtn.addEventListener('click', () => {
+      modal.classList.toggle('is-active')
+    })
+
+    editBtn.addEventListener('click', () => {
+      modal.classList.toggle('is-active')
+      this.editTrip.bind(this)
+    })
+
+    delBtn.addEventListener('click', () => {
+      let choice = window.confirm('Are you sure you want to delete this trip? This cannot be undone!')
+      if (choice) {
+        this.deleteTrip().bind(this)
+      }
+    })
+  }
+
+  editTrip () {
+    let save = document.querySelector('#trip-edit-save')
+    save.addEventListener('click', this.patchTrip.bind(this))
+
+
+  }
+
+  patchTrip (e) {
+    e.preventDefault()
+    debugger
+    // let title = document.querySelectorAll('input[type="text"]')[0].value
+    // let date = document.querySelector('.is-hidden').value
+    // let location = document.querySelector('select').value
+    // let description = document.querySelector('textarea').value
+    // let photo = document.querySelectorAll('input[type="text"]')[3].value
+    // let data = {
+    //   title: title,
+    //   date: date,
+    //   location: location,
+    //   description: description,
+    //   photo: photo
+    // }
+    fetch(`http://localhost:3000/api/v1/trips/${this.id}`, {
+      // method: 'PATCH',
+      body: JSON.stringify(data),
+      headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(trip => {
+      // let tripInstance = new Trip(trip)
+      // tripInstance.renderCard(trip)
+      // document.querySelectorAll('input[type="text"]')[0].value = ''
+      // document.querySelectorAll('input[type="text"]')[1].value = ''
+      // document.querySelector('select').value = ''
+      // document.querySelector('textarea').value = ''
+      // document.querySelectorAll('input[type="text"]')[3].value = ''
+    })
+
+  }
+
+
+
   deleteTrip () {
-    window.event.target.previousElementSibling.remove()
-    window.event.target.remove()
     fetch(`http://localhost:3000/api/v1/trips/${this.id}`, {
       method: 'DELETE',
     })
-    .catch(err => console.log(err))
+    .then(res => {
+      HTMLHelper.renderHome()
+      HTMLHelper.renderForm()
+      document.querySelector('#trip-addBtn').addEventListener('click', Trip.postTrip)
+      Trip.fetchTrips()
+    })
   }
 }

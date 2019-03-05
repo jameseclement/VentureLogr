@@ -133,16 +133,15 @@ class HTMLHelper {
     // Initialize all input of date type.
     let calendars = bulmaCalendar.attach('[type="date"]');
 
-    // Loop on each calendar initialized
-    for(let i = 0; i < calendars.length; i++) { // Add listener to date:selected event calendars[i].on('date:selected',
-      date => {
-        console.log(date)
-      }
-    }
+    // // Loop on each calendar initialized
+    // for(let i = 0; i < calendars.length; i++) { // Add listener to date:selected event calendars[i].on('date:selected',
+    //   date => {
+    //     console.log(date)
+    //   }
+    // }
   }
 
   static renderShowPage(trip){
-    debugger
     let container = document.querySelector('#main-container')
     // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
     container.innerHTML = `
@@ -151,7 +150,19 @@ class HTMLHelper {
         <div class="tile">
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification">
-              <p id="trip-btns" class="title">Trip Cover Picture</p>
+              <p class="title">Trip Cover Picture</p>
+                <div class="field is-grouped">
+                  <p class="control">
+                    <button id="trip-edit-btn" class="button is-warning modal-button" data-target="modal" aria-haspopup="true">
+                      Edit Trip
+                    </button>
+                  </p>
+                  <p class="control">
+                    <button id="trip-del-btn" class="button is-danger">
+                      Delete Trip
+                    </button>
+                  </p>
+                </div>
               <figure class="image">
                 <img src= ${trip.photo} >
               </figure>
@@ -219,22 +230,104 @@ class HTMLHelper {
 
     Entry.renderEntryList(trip)
     Photo.fetchSamplePhotos(trip)
-    HTMLHelper.showTripButtons(trip)
+    trip.btnListener()
   }
 
-  static showTripButtons (trip) {
-    let editBtn = document.createElement('button')
-    editBtn.classList.add('button', 'is-warning')
-    editBtn.innerText = 'Delete Trip'
+  static renderEditForm() {
+    let modalDiv = document.createElement('div')
+    modalDiv.className = 'modal'
+    modalDiv.innerHTML = `
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Modal title</p>
+          <button id="trip-edit-close" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content">
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="e.g Madagascar Vacation">
+            </div>
+          </div>
 
-    let delBtn = document.createElement('button')
-    delBtn.classList.add('button', 'is-danger')
-    delBtn.innerText = 'Delete Trip'
+          <div class="field">
+            <label class="label">Date</label>
+            <div class="control">
+              <input class="input" type="date">
+            </div>
+          </div>
 
-    // cardContainer.appendChild(delBtn)
-    delBtn.addEventListener('click', this.deleteTrip.bind(this))
+          <div class="field">
+          <label class="label">Location</label>
+            <div class="control has-icons-left">
+              <div class="select is-rounded">
+                <select>
+                  <option selected>Country</option>
+                  <option>Select dropdown</option>
+                  <option>With options</option>
+                </select>
+              </div>
+              <div class="icon is-small is-left">
+                <i class="fas fa-globe"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Description</label>
+            <div class="control">
+              <textarea class="textarea" placeholder="Enter a description of your trip."></textarea>
+            </div>
+          </div>
+
+
+          <div class="field">
+            <label class="label">Photo Url:</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter the url to your photo.">
+            </div>
+          </div>
+
+          <!-- use above code until we figure out files -->
+          <!-- <div class="field">
+            <label class="label">Photos:</label>
+            <div class="file is-small">
+              <label class="file-label">
+                <input class="file-input" type="file" name="resume">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file…
+                  </span>
+                </span>
+              </label>
+            </div>
+            </div> -->
+        </div>
+
+        </section>
+        <footer class="modal-card-foot">
+          <button id="trip-edit-save" class="button is-success">Save changes</button>
+          <button id="trip-edit-cancel" class="button">Cancel</button>
+        </footer>
+      </div>
+    </div>`
+
+
+    let section = document.querySelector('.section')
+    section.appendChild(modalDiv)
+    // Initialize all input of date type.
+    let calendars = bulmaCalendar.attach('[type="date"]');
+
+    // Loop on each calendar initialized
+    for(let i = 0; i < calendars.length; i++) { // Add listener to date:selected event calendars[i].on('date:selected',
+      date => {
+        console.log(date)
+      }
+    }
   }
-
-
-
 }
