@@ -15,5 +15,7 @@ class Entry {
     entryUl.appendChild(entryLi)
     // entryLi.addEventListener(()=>renderEntryShow(trip))
   })
+
+
 }
 }

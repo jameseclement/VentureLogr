@@ -88,7 +88,9 @@ class Trip {
     HTMLHelper.renderShowPage(this)
   }
 
-  
+  renderSamplePics(){
+    console.log("hi")
+  }
 
 
 

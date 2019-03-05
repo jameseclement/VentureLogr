@@ -179,32 +179,46 @@ class HTMLHelper {
      <div class="tile columns column is-6 is-multiline">
       <div class="tile column is-parent is-6">
         <article class="tile is-child notification">
-          <p class="title">Photo 1</p>
-          <p class="subtitle">Subtitle</p>
+
+          <figure class="image is-4by3">
+            <img id="sample-image-1" src="">
+          </figure>
+          <h6 id="sample-caption-1" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
       </div>
       <div class="tile column is-parent is-6">
         <article class="tile is-child notification">
-          <p class="title">Photo 2</p>
-          <p class="subtitle">Subtitle</p>
+
+          <figure class="image is-4by3">
+            <img id="sample-image-2" src="">
+          </figure>
+          <h6 id="sample-caption-2" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
       </div>
       <div class="tile column is-parent is-6">
         <article class="tile is-child notification">
-          <p class="title">Photo 3</p>
-          <p class="subtitle">Subtitle</p>
+
+          <figure class="image is-4by3">
+            <img id="sample-image-3" src="">
+
+          </figure>
+          <h6 id="sample-caption-3" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
       </div>
       <div class="tile column is-parent is-6">
         <article class="tile is-child notification">
-          <p class="title">Photo 4</p>
-          <p class="subtitle">Subtitle</p>
+
+          <figure class="image is-4by3">
+            <img id="sample-image-4" src="">
+          </figure>
+          <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
       </div>
     </div>
   </div>
     `
   Entry.renderEntryList(trip)
+  Photo.fetchSamplePhotos(trip)
 }
 
 }
