@@ -7,7 +7,7 @@ class Photo {
 
   static fetchSamplePhotos(trip) {
 
-debugger
+
     fetch(`http://localhost:3000/api/v1/trips/${trip.id}`)
     .then(res => res.json())
     .then(trip =>

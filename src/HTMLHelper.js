@@ -409,4 +409,78 @@ class HTMLHelper {
 
       })
   }
+
+  static renderAddEntryForm() {
+    let modalDiv = document.createElement('div')
+    modalDiv.className = 'modal'
+    modalDiv.innerHTML = `
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Modal title</p>
+          <button id="add-entry-close" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content">
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="e.g The Catacombs">
+            </div>
+          </div>
+
+          <div class="field">
+          <label class="label">Story</label>
+          <div class="control">
+          <textarea class="textarea" placeholder="Today we explored the catacombs under Paris..."></textarea>
+          </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Date</label>
+            <div class="control">
+              <input class="input" type="date">
+            </div>
+          </div>
+
+
+
+          <!-- <div class="field">
+            <label class="label">Photo Url:</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter the url to your photo.">
+            </div>
+          </div> -->
+
+          <!-- use above code until we figure out files -->
+          <!-- <div class="field">
+            <label class="label">Photos:</label>
+            <div class="file is-small">
+              <label class="file-label">
+                <input class="file-input" type="file" name="resume">
+                <span class="file-cta">
+                  <span class="file-icon">
+                    <i class="fas fa-upload"></i>
+                  </span>
+                  <span class="file-label">
+                    Choose a file…
+                  </span>
+                </span>
+              </label>
+            </div>
+            </div> -->
+        </div>
+
+        </section>
+        <footer class="modal-card-foot">
+          <button id="entry-add-save" class="button is-success">Save Entry</button>
+          <button id="entry-add-cancel" class="button">Cancel</button>
+        </footer>
+      </div>
+    </div>`
+
+
+    let section = document.querySelector('.section')
+    section.appendChild(modalDiv)
+  }
 }

@@ -52,7 +52,6 @@ class Trip {
       document.querySelector('textarea').value = ''
       document.querySelectorAll('input[type="text"]')[3].value = ''
     })
-
   }
 
   renderCard (trip) {
@@ -83,10 +82,10 @@ class Trip {
   }
 
   renderShow () {
-
     let mainDiv = document.querySelector("#main-container")
     mainDiv.innerHTML = ""
     HTMLHelper.renderEditForm(this)
+    HTMLHelper.renderAddEntryForm()
     HTMLHelper.renderShowPage(this)
   }
 
@@ -113,7 +112,7 @@ class Trip {
 
     editBtn.addEventListener('click', () => {
       modal.classList.toggle('is-active')
-      this.editTrip.bind(this)
+      this.editTrip(this)
     })
 
     delBtn.addEventListener('click', () => {
@@ -122,32 +121,68 @@ class Trip {
         this.deleteTrip().bind(this)
       }
     })
+
+    let entryModal = document.querySelectorAll('.modal')[1]
+    let entryModalBackground = document.querySelectorAll('.modal-background')[1]
+    let entryModalClose = document.querySelector('#add-entry-close')
+    let entryBtn = document.querySelector('#entry-add-btn')
+    let entryCnclBtn = document.querySelector('#entry-add-cancel')
+    let save = document.querySelector('#entry-add-save')
+
+    entryModalBackground.addEventListener('click', () => {
+      entryModal.classList.toggle('is-active')
+    })
+
+    entryModalClose.addEventListener('click', () => {
+      entryModal.classList.toggle('is-active')
+    })
+
+    entryCnclBtn.addEventListener('click', () => {
+      entryModal.classList.toggle('is-active')
+    })
+
+    entryBtn.addEventListener('click', () => {
+      entryModal.classList.toggle('is-active')
+      this.editTrip(this)
+    })
+
+    save.addEventListener('click', () => {
+      Entry.postEntry(this.id)
+    })
   }
 
   editTrip () {
     let save = document.querySelector('#trip-edit-save')
     save.addEventListener('click', this.patchTrip.bind(this))
 
-
+    let title = document.querySelectorAll('input[type="text"]')[0]
+    let date = document.querySelector('input[type="date"]')
+    let location = document.querySelector('select')
+    let description = document.querySelector('textarea')
+    let photo = document.querySelectorAll('input[type="text"]')[1]
+    title.value = this.title
+    date.value = this.date
+    // location.value = this.location
+    description.value = this.description
+    photo.value = this.photo
   }
 
   patchTrip (e) {
     e.preventDefault()
-    debugger
-    // let title = document.querySelectorAll('input[type="text"]')[0].value
-    // let date = document.querySelector('.is-hidden').value
-    // let location = document.querySelector('select').value
-    // let description = document.querySelector('textarea').value
-    // let photo = document.querySelectorAll('input[type="text"]')[3].value
-    // let data = {
-    //   title: title,
-    //   date: date,
-    //   location: location,
-    //   description: description,
-    //   photo: photo
-    // }
+    let title = document.querySelectorAll('input[type="text"]')[0].value
+    let date = document.querySelector('input[type="date"]').value
+    let location = document.querySelector('select').value
+    let description = document.querySelector('textarea').value
+    let photo = document.querySelectorAll('input[type="text"]')[1].value
+    let data = {
+      title: title,
+      date: date,
+      location: location,
+      description: description,
+      photo: photo
+    }
     fetch(`http://localhost:3000/api/v1/trips/${this.id}`, {
-      // method: 'PATCH',
+      method: 'PATCH',
       body: JSON.stringify(data),
       headers: {
           "Content-Type": "application/json",
@@ -156,13 +191,14 @@ class Trip {
     })
     .then(res => res.json())
     .then(trip => {
-      // let tripInstance = new Trip(trip)
-      // tripInstance.renderCard(trip)
-      // document.querySelectorAll('input[type="text"]')[0].value = ''
-      // document.querySelectorAll('input[type="text"]')[1].value = ''
-      // document.querySelector('select').value = ''
-      // document.querySelector('textarea').value = ''
-      // document.querySelectorAll('input[type="text"]')[3].value = ''
+      document.querySelectorAll('input[type="text"]')[0].value = ''
+      document.querySelector('input[type="date"]').value = ''
+      document.querySelector('select').value = ''
+      document.querySelector('textarea').value = ''
+      document.querySelectorAll('input[type="text"]')[1].value = ''
+      document.querySelector('.modal').classList.toggle('is-active')
+      let tripInstance = new Trip(trip)
+      tripInstance.renderShow()
     })
 
   }
