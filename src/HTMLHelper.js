@@ -3,7 +3,7 @@ class HTMLHelper {
 
   }
 
-  static renderHome () {
+  static renderHome() {
     let container = document.querySelector('#main-container')
     // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
     container.innerHTML = `
@@ -53,7 +53,7 @@ class HTMLHelper {
     `
   }
 
-  static renderForm () {
+  static renderForm() {
     let formContainer = document.querySelector('#add-trip-form')
 
     formContainer.innerHTML = `
@@ -132,13 +132,6 @@ class HTMLHelper {
 
     // Initialize all input of date type.
     let calendars = bulmaCalendar.attach('[type="date"]');
-
-    // // Loop on each calendar initialized
-    // for(let i = 0; i < calendars.length; i++) { // Add listener to date:selected event calendars[i].on('date:selected',
-    //   date => {
-    //     console.log(date)
-    //   }
-    // }
   }
 
   static renderShowPage(trip){
@@ -327,5 +320,93 @@ class HTMLHelper {
 
     let section = document.querySelector('.section')
     section.appendChild(modalDiv)
+  }
+
+  static renderEntryShow(entry, trip) {
+
+    fetch(`http://localhost:3000/api/v1/entries/${entry.id}`)
+      .then(res => res.json())
+      .then(entry => {
+        console.log("trying to render entry show")
+        let container = document.querySelector('#main-container')
+        // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
+        container.innerHTML = `
+      <div class="tile is-ancestor">
+        <div class="tile is-vertical">
+          <div class="tile">
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification">
+                <p class="title">${entry.title}</p>
+                <figure class="image">
+                  <img id="entry-main-photo" src= ${entry.photos[0].url} >
+                </figure>
+              </article>
+            </div>
+            <div class="tile is-parent is-vertical">
+              <article class="tile is-child notification">
+                <p class="title"> ${entry.date} </p>
+                <p> ${entry.story}</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class='tile is-ancestor'>
+       <div class='tile column is-parent is-6'>
+         <article class="tile is-child notification">
+           <p class="title">${trip.title}</p>
+           <ul id = "entry-ul">
+           <!-- this is where the trip entries will end up -->
+           </ul>
+         </article>
+       </div>
+       <div class="tile columns column is-6 is-multiline">
+        <div class="tile column is-parent is-6">
+          <article class="tile is-child notification">
+
+            <figure class="image is-4by3">
+              <img id="sample-image-1">
+            </figure>
+            <h6 id="sample-caption-1" class="subtitle is-6 has-text-right"></h6>
+          </article>
+        </div>
+        <div class="tile column is-parent is-6">
+          <article class="tile is-child notification">
+
+            <figure class="image is-4by3">
+              <img id="sample-image-2" >
+            </figure>
+            <h6 id="sample-caption-2" class="subtitle is-6 has-text-right"><h6>
+          </article>
+        </div>
+        <div class="tile column is-parent is-6">
+          <article class="tile is-child notification">
+
+            <figure class="image is-4by3">
+              <img id="sample-image-3">
+
+            </figure>
+            <h6 id="sample-caption-3" class="subtitle is-6 has-text-right"></h6>
+          </article>
+        </div>
+        <div class="tile column is-parent is-6">
+          <article class="tile is-child notification">
+
+            <figure class="image is-4by3">
+              <img id="sample-image-4" >
+            </figure>
+            <h6 id="sample-caption-4" class="subtitle is-6 has-text-right"></h6>
+          </article>
+        </div>
+      </div>
+    </div>
+      `
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0
+        Entry.renderEntryList(trip)
+        Photo.renderEntryPhotos(entry)
+
+      })
   }
 }

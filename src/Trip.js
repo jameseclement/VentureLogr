@@ -83,6 +83,7 @@ class Trip {
   }
 
   renderShow () {
+
     let mainDiv = document.querySelector("#main-container")
     mainDiv.innerHTML = ""
     HTMLHelper.renderEditForm(this)
