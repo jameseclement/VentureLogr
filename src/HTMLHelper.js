@@ -192,7 +192,7 @@ class HTMLHelper {
         <article class="tile is-child notification">
 
           <figure class="image is-4by3">
-            <img id="sample-image-1" src="">
+            <img id="sample-image-1" class= "sample-image" src="">
           </figure>
           <h6 id="sample-caption-1" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
@@ -201,7 +201,7 @@ class HTMLHelper {
         <article class="tile is-child notification">
 
           <figure class="image is-4by3">
-            <img id="sample-image-2" src="">
+            <img id="sample-image-2" class= "sample-image" src="">
           </figure>
           <h6 id="sample-caption-2" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
@@ -210,7 +210,7 @@ class HTMLHelper {
         <article class="tile is-child notification">
 
           <figure class="image is-4by3">
-            <img id="sample-image-3" src="">
+            <img id="sample-image-3" class= "sample-image" src="">
 
           </figure>
           <h6 id="sample-caption-3" class="subtitle is-6 has-text-right">Subtitle 6</h6>
@@ -219,7 +219,7 @@ class HTMLHelper {
       <div class="tile column is-parent is-6">
         <article class="tile is-child notification">
           <figure class="image is-4by3">
-            <img id="sample-image-4" src="">
+            <img id="sample-image-4" class= "sample-image" src="">
           </figure>
           <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
         </article>
@@ -327,9 +327,19 @@ class HTMLHelper {
     fetch(`http://localhost:3000/api/v1/entries/${entry.id}`)
       .then(res => res.json())
       .then(entry => {
+        let entryMainPhoto = ''
         console.log("trying to render entry show")
         let container = document.querySelector('#main-container')
+
+        if (entry.photos.length === 0){
+
+           entryMainPhoto = "https://image.flaticon.com/icons/png/512/3/3901.png"
+
+        }else{
+           entryMainPhoto = entry.photos[0].url
+          }
         // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
+
         container.innerHTML = `
       <div class="tile is-ancestor">
         <div class="tile is-vertical">
@@ -338,7 +348,7 @@ class HTMLHelper {
               <article class="tile is-child notification">
                 <p class="title">${entry.title}</p>
                 <figure class="image">
-                  <img id="entry-main-photo" src= ${entry.photos[0].url} >
+                  <img id="entry-main-photo" src= ${entryMainPhoto}>
                 </figure>
               </article>
             </div>
@@ -366,37 +376,37 @@ class HTMLHelper {
           <article class="tile is-child notification">
 
             <figure class="image is-4by3">
-              <img id="sample-image-1">
+              <img id="sample-image-1" class= "sample-image">
             </figure>
-            <h6 id="sample-caption-1" class="subtitle is-6 has-text-right"></h6>
+            <h6 id="sample-caption-1" class="caption subtitle is-6 has-text-right"></h6>
           </article>
         </div>
         <div class="tile column is-parent is-6">
           <article class="tile is-child notification">
 
             <figure class="image is-4by3">
-              <img id="sample-image-2" >
+              <img id="sample-image-2" class= "sample-image" >
             </figure>
-            <h6 id="sample-caption-2" class="subtitle is-6 has-text-right"><h6>
+            <h6 id="sample-caption-2" class="caption subtitle is-6 has-text-right"></h6>
           </article>
         </div>
         <div class="tile column is-parent is-6">
           <article class="tile is-child notification">
 
             <figure class="image is-4by3">
-              <img id="sample-image-3">
+              <img id="sample-image-3" class= "sample-image">
 
             </figure>
-            <h6 id="sample-caption-3" class="subtitle is-6 has-text-right"></h6>
+            <h6 id="sample-caption-3" class="caption subtitle is-6 has-text-right"></h6>
           </article>
         </div>
         <div class="tile column is-parent is-6">
           <article class="tile is-child notification">
 
             <figure class="image is-4by3">
-              <img id="sample-image-4" >
+              <img id="sample-image-4" class= "sample-image" >
             </figure>
-            <h6 id="sample-caption-4" class="subtitle is-6 has-text-right"></h6>
+            <h6 id="sample-caption-4" class="caption subtitle is-6 has-text-right"></h6>
           </article>
         </div>
       </div>
