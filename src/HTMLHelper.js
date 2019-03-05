@@ -164,7 +164,7 @@ class HTMLHelper {
                   </p>
                 </div>
               <figure class="image">
-                <img src= ${trip.photo} >
+                <img id="trip-main-photo" src= ${trip.photo} >
               </figure>
             </article>
           </div>

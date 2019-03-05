@@ -21,10 +21,13 @@ class Photo {
         </div>
         `
         cardContainer.appendChild(card)
-        card.addEventListener('click', (e) => console.log("clicked photo"))
+        card.addEventListener('click', (e)=> {
+          let tripMainPhoto = document.querySelector("#trip-main-photo")
+            tripMainPhoto.src = e.target.src
+        })
       })
-      })
-    }
+    })
+  }
 
 
     static renderEntryPhotos(entry){
@@ -40,7 +43,10 @@ class Photo {
         </div>
         `
         cardContainer.appendChild(card)
-        card.addEventListener('click', (e) => console.log("clicked photo"))
+        card.addEventListener('click', (e)=> {
+          let entryMainPhoto = document.querySelector("#entry-main-photo")
+          entryMainPhoto.src = e.target.src
+        })
       })
     }
   }
