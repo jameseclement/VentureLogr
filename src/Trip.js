@@ -59,6 +59,13 @@ class Trip {
     let card = document.createElement('div')
     card.classList.add('card', 'column', 'is-3')
 
+    // temporary
+    let delBtn = document.createElement('button')
+    delBtn.classList.add('button', 'is-danger')
+    delBtn.innerText = 'Delete Trip'
+    //
+
+
     card.innerHTML = `
     <div class="card-image">
       <figure class="image is-4by3">
@@ -78,6 +85,12 @@ class Trip {
     `
 
     cardContainer.appendChild(card)
+
+    // temp
+    cardContainer.appendChild(delBtn)
+    delBtn.addEventListener('click', this.deleteTrip.bind(this))
+    //
+
     card.addEventListener('click', this.renderShow.bind(this))
   }
 
@@ -85,5 +98,14 @@ class Trip {
     let mainDiv = document.querySelector("#main-container")
     mainDiv.innerHTML = ""
     HTMLHelper.renderShowPage()
+  }
+
+  deleteTrip () {
+    window.event.target.previousElementSibling.remove()
+    window.event.target.remove()
+    fetch(`http://localhost:3000/api/v1/trips/${this.id}`, {
+      method: 'DELETE',
+    })
+    .catch(err => console.log(err))
   }
 }
