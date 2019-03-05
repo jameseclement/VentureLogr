@@ -25,17 +25,38 @@ class Photo {
       let image2 = document.querySelector("#sample-image-2")
       let image3 = document.querySelector("#sample-image-3")
       let image4 = document.querySelector("#sample-image-4")
+      let imagesArray = [image1, image2, image3, image4]
+
+      let caption1 = document.querySelector("#sample-caption-1")
+      let caption2 = document.querySelector("#sample-caption-2")
+      let caption3 = document.querySelector("#sample-caption-3")
+      let caption4 = document.querySelector("#sample-caption-4")
+
       image1.src = entry.photos[0].url
       image2.src = entry.photos[1].url
       image3.src = entry.photos[0].url
       image4.src = entry.photos[1].url
 
+      caption1.innerText = entry.photos[0].caption
+      caption2.innerText = entry.photos[1].caption
+      caption3.innerText = entry.photos[0].caption
+      caption4.innerText = entry.photos[1].caption
+
+      let entryMainPhoto = document.querySelector("#entry-main-photo")
+
+      imagesArray.forEach(el => el.addEventListener("click", (e)=> {
+          let entryMainPhoto = document.querySelector("#entry-main-photo")
+          entryMainPhoto.src = e.target.src
+      }))
 
 
 
 
 
-    }
+      }
+
+
+
 }
 
 
