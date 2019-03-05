@@ -3,6 +3,13 @@ class HTMLHelper {
 
   }
 
+  static home () {
+    HTMLHelper.renderHome()
+    HTMLHelper.renderForm()
+    document.querySelector('#trip-addBtn').addEventListener('click', Trip.postTrip)
+    Trip.fetchTrips()
+  }
+
   static renderHome() {
     let container = document.querySelector('#main-container')
     // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
@@ -453,6 +460,12 @@ class HTMLHelper {
             </div>
           </div>
 
+          <div class="field">
+            <label class="label">Photo Url:</label>
+            <div class="control">
+              <input class="input" type="text" placeholder="Enter the url to your photo.">
+            </div>
+          </div>
 
 
           <!-- <div class="field">

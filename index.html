@@ -12,7 +12,7 @@
 <body>
   <nav class="navbar has-background-info" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
-    <p class="navbar-item is-size-3 has-text-light">Venture Logr</p>
+    <a id="logo" class="navbar-item is-size-3 has-text-light">Venture Logr</a>
     <!-- navbar items, navbar burger... -->
   </div>
 </nav>
@@ -28,5 +28,8 @@
   <script type="text/javascript" src="src/Entry.js"></script>
   <script type="text/javascript" src="src/Photo.js"></script>
   <script type="text/javascript" src="src/index.js"></script>
+  <script type="text/javascript">
+      document.querySelector('#logo').addEventListener('click', () => {HTMLHelper.home()})
+  </script>
 </body>
 </html>
