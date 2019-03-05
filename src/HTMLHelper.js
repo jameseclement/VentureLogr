@@ -419,6 +419,13 @@ class HTMLHelper {
       </div>
     </div>
       `
+
+      let a = document.createElement('a')
+      a.innerText = 'Back to Trip'
+
+      container.appendChild(a)
+      a.addEventListener('click', () => {HTMLHelper.renderShowPage(trip)})
+
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0
         Entry.renderEntryList(trip)
