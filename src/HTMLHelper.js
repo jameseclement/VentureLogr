@@ -221,6 +221,7 @@ class HTMLHelper {
     Photo.fetchSamplePhotos(trip)
   }
   static renderEntryShow(entry, trip) {
+
     fetch(`http://localhost:3000/api/v1/entries/${entry.id}`)
       .then(res => res.json())
       .then(entry => {
@@ -299,7 +300,10 @@ class HTMLHelper {
       </div>
     </div>
       `
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0
         Entry.renderEntryList(trip)
+
       })
   }
 }
