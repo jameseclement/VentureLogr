@@ -7,19 +7,20 @@ class Photo {
 
   static fetchSamplePhotos(trip) {
 
-
+debugger
     fetch(`http://localhost:3000/api/v1/trips/${trip.id}`)
     .then(res => res.json())
-    .then(trip => {trip.photos.slice(0,4).forEach(function(photo, index){
+    .then(trip =>
+
+      {trip.photos.slice(0,4).forEach(function(photo, index){
+
       let photoCard = document.querySelector(`#sample-image-${index+1}`)
       let captionHead = document.querySelector(`#sample-caption-${index+1}`)
+
       photoCard.src = photo.url
-      captionHead.innerHTML = photo.caption
-
-    })
+     captionHead.innerHTML = photo.caption
+      })
     })}
-
-
     static renderEntryPhotos(entry){
       let image1 = document.querySelector("#sample-image-1")
       let image2 = document.querySelector("#sample-image-2")
