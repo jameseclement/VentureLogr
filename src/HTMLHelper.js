@@ -3,7 +3,7 @@ class HTMLHelper {
 
   }
 
-  static home () {
+  static home() {
     HTMLHelper.renderHome()
     HTMLHelper.renderForm()
     document.querySelector('#trip-addBtn').addEventListener('click', Trip.postTrip)
@@ -141,7 +141,7 @@ class HTMLHelper {
     let calendars = bulmaCalendar.attach('[type="date"]');
   }
 
-  static renderShowPage(trip){
+  static renderShowPage(trip) {
     let container = document.querySelector('#main-container')
     // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
     container.innerHTML = `
@@ -164,7 +164,7 @@ class HTMLHelper {
                   </p>
                 </div>
               <figure class="image">
-                <img src= ${trip.photo} >
+                <img id="trip-main-photo" src= ${trip.photo} >
               </figure>
             </article>
           </div>
@@ -194,43 +194,13 @@ class HTMLHelper {
         </div>
        </article>
      </div>
-     <div class="tile columns column is-6 is-multiline">
-      <div class="tile column is-parent is-6">
-        <article class="tile is-child notification">
-
-          <figure class="image is-4by3">
-            <img id="sample-image-1" class= "sample-image" src="">
-          </figure>
-          <h6 id="sample-caption-1" class="subtitle is-6 has-text-right">Subtitle 6</h6>
-        </article>
-      </div>
-      <div class="tile column is-parent is-6">
-        <article class="tile is-child notification">
-
-          <figure class="image is-4by3">
-            <img id="sample-image-2" class= "sample-image" src="">
-          </figure>
-          <h6 id="sample-caption-2" class="subtitle is-6 has-text-right">Subtitle 6</h6>
-        </article>
-      </div>
-      <div class="tile column is-parent is-6">
-        <article class="tile is-child notification">
-
-          <figure class="image is-4by3">
-            <img id="sample-image-3" class= "sample-image" src="">
-
-          </figure>
-          <h6 id="sample-caption-3" class="subtitle is-6 has-text-right">Subtitle 6</h6>
-        </article>
-      </div>
-      <div class="tile column is-parent is-6">
-        <article class="tile is-child notification">
-          <figure class="image is-4by3">
-            <img id="sample-image-4" class= "sample-image" src="">
-          </figure>
-          <h6 id="sample-caption-4" class="subtitle is-6 has-text-right">Subtitle 6</h6>
-        </article>
-      </div>
+     <div class="tile column is-6 is-parent is-multiline ">
+     <article class="tile is-child notification">
+     <p class="title">Photos</p>
+     <div id="trip-photo-container" class="columns is-multiline">
+       <!-- this is where trip photos end up -->
+     </div>
+     </article>
     </div>
     </div>
     `
@@ -338,13 +308,13 @@ class HTMLHelper {
         console.log("trying to render entry show")
         let container = document.querySelector('#main-container')
 
-        if (entry.photos.length === 0){
+        if (entry.photos.length === 0) {
 
-           entryMainPhoto = "https://image.flaticon.com/icons/png/512/3/3901.png"
+          entryMainPhoto = "https://image.flaticon.com/icons/png/512/3/3901.png"
 
-        }else{
-           entryMainPhoto = entry.photos[0].url
-          }
+        } else {
+          entryMainPhoto = entry.photos[0].url
+        }
         // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
 
         container.innerHTML = `
@@ -378,44 +348,13 @@ class HTMLHelper {
            </ul>
          </article>
        </div>
-       <div class="tile columns column is-6 is-multiline">
-        <div class="tile column is-parent is-6">
-          <article class="tile is-child notification">
-
-            <figure class="image is-4by3">
-              <img id="sample-image-1" class= "sample-image">
-            </figure>
-            <h6 id="sample-caption-1" class="caption subtitle is-6 has-text-right"></h6>
-          </article>
-        </div>
-        <div class="tile column is-parent is-6">
-          <article class="tile is-child notification">
-
-            <figure class="image is-4by3">
-              <img id="sample-image-2" class= "sample-image" >
-            </figure>
-            <h6 id="sample-caption-2" class="caption subtitle is-6 has-text-right"></h6>
-          </article>
-        </div>
-        <div class="tile column is-parent is-6">
-          <article class="tile is-child notification">
-
-            <figure class="image is-4by3">
-              <img id="sample-image-3" class= "sample-image">
-
-            </figure>
-            <h6 id="sample-caption-3" class="caption subtitle is-6 has-text-right"></h6>
-          </article>
-        </div>
-        <div class="tile column is-parent is-6">
-          <article class="tile is-child notification">
-
-            <figure class="image is-4by3">
-              <img id="sample-image-4" class= "sample-image" >
-            </figure>
-            <h6 id="sample-caption-4" class="caption subtitle is-6 has-text-right"></h6>
-          </article>
-        </div>
+         <div class="tile column is-6 is-parent is-multiline ">
+           <article class="tile is-child notification">
+           <p class="title">Photos</p>
+            <div id="entry-photo-container" class="columns is-multiline">
+         <!-- this is where entry photos end up -->
+            </div>
+           </article>
       </div>
     </div>
       `
