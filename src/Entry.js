@@ -20,6 +20,55 @@ class Entry {
     })
   }
 
+  static addListen () {
+    let entryEditBtn = document.querySelector('#entry-add-btn')
+    let entryDelBtn = document.querySelector('#entry-del-btn')
+
+    entryModalBackground.addEventListener('click', () => {
+      entryModal.classList.toggle('is-active')
+    })
+
+    entryModalClose.addEventListener('click', () => {
+      entryModal.classList.toggle('is-active')
+    })
+
+    entryCnclBtn.addEventListener('click', () => {
+      entryModal.classList.toggle('is-active')
+    })
+
+    entryEditBtn.addEventListener('click', () => {
+      entryModal.classList.toggle('is-active')
+      this.editEntry(this)
+    })
+
+    entryDelBtn.addEventListener('click', () => {
+      let choice = window.confirm('Are you sure you want to delete this trip? This cannot be undone!')
+      if (choice) {
+        this.deleteEntry().bind(this)
+      }
+    })
+
+
+
+    let addPhotoBtn = document.querySelector('#add-photo-btn')
+
+    addPhotoBtn.addEventListener('click', () => {
+      add photo
+    })
+
+
+
+
+
+
+
+
+
+
+
+  }
+
+
   static postEntry (e) {
     e.preventDefault()
     let title = document.querySelectorAll('input[type="text"]')[0].value
