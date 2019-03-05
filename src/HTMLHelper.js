@@ -184,7 +184,14 @@ class HTMLHelper {
          <p class="title">Entries</p>
          <ul id = "entry-ul">
          <!-- this is where the trip entries will end up -->
-         </ul>
+         </ul><br>
+         <div class="field">
+           <p class="control">
+             <button id="entry-add-btn" class="button is-success modal-button" data-target="modal" aria-haspopup="true">
+               Add Entry
+             </button>
+           </p>
+        </div>
        </article>
      </div>
      <div class="tile columns column is-6 is-multiline">
@@ -320,14 +327,5 @@ class HTMLHelper {
 
     let section = document.querySelector('.section')
     section.appendChild(modalDiv)
-    // Initialize all input of date type.
-    let calendars = bulmaCalendar.attach('[type="date"]');
-
-    // Loop on each calendar initialized
-    for(let i = 0; i < calendars.length; i++) { // Add listener to date:selected event calendars[i].on('date:selected',
-      date => {
-        console.log(date)
-      }
-    }
   }
 }
