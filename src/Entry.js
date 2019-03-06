@@ -9,6 +9,10 @@ class Entry {
   }
 
   static renderEntryList(trip) {
+    
+    fetch(`http://localhost:3000/api/v1/trips/${trip.id}`)
+    .then(res => res.json())
+    .then(trip => {
     trip.entries.forEach((entry) => {
     let entryUl = document.querySelector("#entry-ul")
     let entryLi = document.createElement("li")
@@ -18,6 +22,7 @@ class Entry {
     entryUl.appendChild(entryLi)
     entryLi.addEventListener("click", ()=> HTMLHelper.renderEntryShow(entry, trip))
     })
+  })
   }
 
   // adds listeners on entry show page
@@ -49,7 +54,7 @@ class Entry {
     entryDelBtn.addEventListener('click', () => {
       let choice = window.confirm('Are you sure you want to delete this entry? This cannot be undone!')
       if (choice) {
-        Entry.deleteEntry(entry)
+        Entry.deleteEntry(entry, trip)
       }
     })
 
@@ -96,4 +101,11 @@ class Entry {
       document.querySelectorAll('input[type="text"]')[3].value = ''
     })
   }
+
+  static deleteEntry(entry, trip){
+    fetch(`http://localhost:3000/api/v1/entries/${entry.id}`,{
+    method: "DELETE"})
+    .then(res => HTMLHelper.renderShowPage(trip))
+  }
+
 }
