@@ -388,7 +388,7 @@ class HTMLHelper {
       a.innerText = 'Back to Trip'
 
       container.appendChild(a)
-      a.addEventListener('click', () => {trip.renderShow(this)})
+      a.addEventListener('click', () => {trip.renderShow()})
     })
   }
 
@@ -424,40 +424,6 @@ class HTMLHelper {
               <input class="input" type="date">
             </div>
           </div>
-
-          <div class="field">
-            <label class="label">Photo Url:</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Enter the url to your photo.">
-            </div>
-          </div>
-
-
-          <!-- <div class="field">
-            <label class="label">Photo Url:</label>
-            <div class="control">
-              <input class="input" type="text" placeholder="Enter the url to your photo.">
-            </div>
-          </div> -->
-
-          <!-- use above code until we figure out files -->
-          <!-- <div class="field">
-            <label class="label">Photos:</label>
-            <div class="file is-small">
-              <label class="file-label">
-                <input class="file-input" type="file" name="resume">
-                <span class="file-cta">
-                  <span class="file-icon">
-                    <i class="fas fa-upload"></i>
-                  </span>
-                  <span class="file-label">
-                    Choose a file…
-                  </span>
-                </span>
-              </label>
-            </div>
-            </div> -->
-
         </div>
 
         </section>
