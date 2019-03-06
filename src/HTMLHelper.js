@@ -324,6 +324,23 @@ class HTMLHelper {
             <div class="tile is-parent is-vertical">
               <article class="tile is-child notification">
                 <p class="title">${entry.title}</p>
+                <div class="field is-grouped">
+                  <p class="control">
+                    <button id="entry-edit-btn" class="button is-warning modal-button" data-target="modal" aria-haspopup="true">
+                      Edit Entry
+                    </button>
+                  </p>
+                  <p class="control">
+                    <button id="entry-del-btn" class="button is-danger">
+                      Delete Entry
+                    </button>
+                  </p>
+                  <p class="control">
+                    <button id="add-photo-btn" class="button is-success modal-button" data-target="modal" aria-haspopup="true">
+                      Add Photo
+                    </button>
+                  </p>
+                </div>
                 <figure class="image">
                   <img id="entry-main-photo" class="resize" src= ${entryMainPhoto}>
                 </figure>
@@ -367,6 +384,7 @@ class HTMLHelper {
 
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0
+        Entry.addListen(entry)
         Entry.renderEntryList(trip)
         Photo.renderEntryPhotos(entry)
 
