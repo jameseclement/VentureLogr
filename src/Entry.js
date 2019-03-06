@@ -66,17 +66,16 @@ class Entry {
   }
 
 
-  static postEntry (e) {
-    e.preventDefault()
+  static postEntry (trip_id) {
+    window.event.preventDefault()
     let title = document.querySelectorAll('input[type="text"]')[2].value
     let story = document.querySelectorAll('textarea')[1].value
     let date = document.querySelectorAll('input[type="date"]')[1].value
-    let photo = document.querySelectorAll('input[type="text"]')[3].value
     let data = {
       title: title,
       story: story,
       date: date,
-      photo: photo
+      trip_id: trip_id
     }
     fetch('http://localhost:3000/api/v1/entries', {
       method: 'POST',
@@ -88,12 +87,16 @@ class Entry {
     })
     .then(res => res.json())
     .then(entry => {
-      let entryInstance = new Entry(entry)
-      entryInstance.renderEntryList(entry)
       document.querySelectorAll('input[type="text"]')[2].value = ''
       document.querySelectorAll('textarea')[1].value = ''
       document.querySelectorAll('input[type="date"]')[1].value = ''
-      document.querySelectorAll('input[type="text"]')[3].value = ''
+      document.querySelectorAll('.modal')[1].classList.toggle('is-active')
+      fetch(`http://localhost:3000/api/v1/trips/${entry.trip.id}`)
+      .then(res => res.json())
+      .then(trip => {
+        let tripInstance = new Trip(trip)
+        tripInstance.renderShow()
+      })
     })
   }
 }

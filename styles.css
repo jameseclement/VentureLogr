@@ -11,5 +11,9 @@ img.resize {
   }
 
 li {
-  display: inline-block;
+  display: block !important;
+}
+
+li.button {
+  text-align: left;
 }
