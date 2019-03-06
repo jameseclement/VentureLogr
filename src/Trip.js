@@ -143,7 +143,6 @@ class Trip {
 
     entryBtn.addEventListener('click', () => {
       entryModal.classList.toggle('is-active')
-      this.editTrip(this)
     })
 
     save.addEventListener('click', () => {

@@ -20,77 +20,65 @@ class Entry {
     })
   }
 
-  static addListen () {
-    // let entryModal
-    // let entryModalBackground
-    // let entryModalClose
-    // let entryCnclBtn
-    // let entryEditBtn = document.querySelector('#entry-add-btn')
-    // let entryDelBtn = document.querySelector('#entry-del-btn')
-    //
-    // entryModalBackground.addEventListener('click', () => {
-    //   entryModal.classList.toggle('is-active')
-    // })
-    //
-    // entryModalClose.addEventListener('click', () => {
-    //   entryModal.classList.toggle('is-active')
-    // })
-    //
-    // entryCnclBtn.addEventListener('click', () => {
-    //   entryModal.classList.toggle('is-active')
-    // })
-    //
-    // entryEditBtn.addEventListener('click', () => {
-    //   entryModal.classList.toggle('is-active')
-    //   this.editEntry(this)
-    // })
-    //
-    // entryDelBtn.addEventListener('click', () => {
-    //   let choice = window.confirm('Are you sure you want to delete this trip? This cannot be undone!')
-    //   if (choice) {
-    //     this.deleteEntry().bind(this)
-    //   }
-    // })
-    //
-    //
+  // adds listeners on entry show page
+  static addListen (entry, trip) {
+    let entryEditModal = document.querySelector('.modal')
+    let entryModalBackground = document.querySelector('.modal-background')
+    let entryModalClose = document.querySelector('#add-entry-close')
+    let entryCnclBtn = document.querySelector('#entry-add-cancel')
+    let entryEditBtn = document.querySelector('#entry-edit-btn')
+    let entryDelBtn = document.querySelector('#entry-del-btn')
+
+    entryModalBackground.addEventListener('click', () => {
+      entryEditModal.classList.toggle('is-active')
+    })
+
+    entryModalClose.addEventListener('click', () => {
+      entryEditModal.classList.toggle('is-active')
+    })
+
+    entryCnclBtn.addEventListener('click', () => {
+      entryEditModal.classList.toggle('is-active')
+    })
+
+    entryEditBtn.addEventListener('click', () => {
+      entryEditModal.classList.toggle('is-active')
+      Entry.editEntry(entry)
+    })
+
+    entryDelBtn.addEventListener('click', () => {
+      let choice = window.confirm('Are you sure you want to delete this entry? This cannot be undone!')
+      if (choice) {
+        Entry.deleteEntry(entry)
+      }
+    })
+
+
     // let photoModal
     // let photoModalBackground
     // let photoModalClose
     // let photoCnclBtn
     // let addPhotoBtn = document.querySelector('#add-photo-btn')
-
-    addPhotoBtn.addEventListener('click', () => {
-      // add photo
-    })
-
-
-
-
-
-
-
-
-
-
-
+    //
+    // addPhotoBtn.addEventListener('click', () => {
+    //   // add photo
+    // })
   }
 
 
   static postEntry (e) {
     e.preventDefault()
-    let title = document.querySelectorAll('input[type="text"]')[0].value
-    let date = document.querySelector('.is-hidden').value
-    let location = document.querySelector('select').value
-    let description = document.querySelector('textarea').value
+    let title = document.querySelectorAll('input[type="text"]')[2].value
+    let story = document.querySelectorAll('textarea')[1].value
+    let date = document.querySelectorAll('input[type="date"]')[1].value
     let photo = document.querySelectorAll('input[type="text"]')[3].value
     let data = {
       title: title,
+      story: story,
       date: date,
-      location: location,
-      description: description,
       photo: photo
     }
-    fetch('http://localhost:3000/api/v1/trips', {
+    fetch('http://localhost:3000/api/v1/entries', {
       method: 'POST',
       body: JSON.stringify(data),
       headers: {
@@ -99,15 +87,13 @@ class Entry {
       }
     })
     .then(res => res.json())
-    .then(trip => {
-      let tripInstance = new Trip(trip)
-      tripInstance.renderCard(trip)
-      document.querySelectorAll('input[type="text"]')[0].value = ''
-      document.querySelectorAll('input[type="text"]')[1].value = ''
-      document.querySelector('select').value = ''
-      document.querySelector('textarea').value = ''
+    .then(entry => {
+      let entryInstance = new Entry(entry)
+      entryInstance.renderEntryList(entry)
+      document.querySelectorAll('input[type="text"]')[2].value = ''
+      document.querySelectorAll('textarea')[1].value = ''
+      document.querySelectorAll('input[type="date"]')[1].value = ''
       document.querySelectorAll('input[type="text"]')[3].value = ''
     })
-
   }
 }

@@ -205,6 +205,8 @@ class HTMLHelper {
     </div>
     `
 
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0
     Entry.renderEntryList(trip)
     Photo.fetchSamplePhotos(trip)
     trip.btnListener()
@@ -376,19 +378,18 @@ class HTMLHelper {
     </div>
       `
 
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0
+        Entry.addListen(entry, trip)
+        Entry.renderEntryList(trip)
+        Photo.renderEntryPhotos(entry)
+
       let a = document.createElement('a')
       a.innerText = 'Back to Trip'
 
       container.appendChild(a)
-      a.addEventListener('click', () => {HTMLHelper.renderShowPage(trip)})
-
-      document.body.scrollTop = 0;
-      document.documentElement.scrollTop = 0
-        Entry.addListen(entry)
-        Entry.renderEntryList(trip)
-        Photo.renderEntryPhotos(entry)
-
-      })
+      a.addEventListener('click', () => {trip.renderShow(this)})
+    })
   }
 
   static renderAddEntryForm() {
