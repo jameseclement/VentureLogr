@@ -70,11 +70,11 @@ class Trip {
       <p class="subtitle is-6">${this.date}</p>
     </div>
 
-    <div class="content">
-      ${this.description}
+    <!-- <div class="content">
+      // ${this.description}
       <br>
       <time datetime="2016-1-1">Maybe trip entry here?</time>
-    </div>
+    </div> -->
     `
 
     cardContainer.appendChild(card)
@@ -128,7 +128,7 @@ class Trip {
     let entryBtn = document.querySelector('#entry-add-btn')
     let entryCnclBtn = document.querySelector('#entry-add-cancel')
     let save = document.querySelector('#entry-add-save')
-    
+
     entryModalBackground.addEventListener('click', () => {
       entryModal.classList.toggle('is-active')
     })

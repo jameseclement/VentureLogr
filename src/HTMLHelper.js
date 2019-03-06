@@ -19,7 +19,7 @@ class HTMLHelper {
         <div class="tile">
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification">
-              <p class="title">Profile Picture</p>
+              <p class="title">Adventure Pete</p>
               <figure class="image">
                 <img src="https://images.pexels.com/photos/1392099/pexels-photo-1392099.jpeg?cs=srgb&dl=adult-adventure-backpack-1392099.jpg&fm=jpg">
               </figure>
@@ -36,7 +36,7 @@ class HTMLHelper {
             <article class="tile is-child notification">
               <div class="content">
                 <p class="title">Travel and Me:</p>
-                <p class="subtitle">I'm a digital nomad with a thirst for adventure. I always have my laptop with me, but I'm keen to join on any adventure, anywhere, anytime. I work hard so I can play hard!</p>
+                <p class="subtitle">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
                 <div class="content">
                 </div>
               </div>
@@ -150,7 +150,7 @@ class HTMLHelper {
         <div class="tile">
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification">
-              <p class="title">Trip Cover Picture</p>
+              <p class="title">${trip.title}</p>
                 <div class="field is-grouped">
                   <p class="control">
                     <button id="trip-edit-btn" class="button is-warning modal-button" data-target="modal" aria-haspopup="true">
@@ -164,13 +164,13 @@ class HTMLHelper {
                   </p>
                 </div>
               <figure class="image">
-                <img id="trip-main-photo" src= ${trip.photo} >
+                <img id="trip-main-photo" class= "resize" src= ${trip.photo} >
               </figure>
             </article>
           </div>
           <div class="tile is-parent is-vertical">
             <article class="tile is-child notification">
-              <p class="title"> ${trip.title} </p>
+              <p class="title"> </p>
               <p> ${trip.description} </p>
             </article>
           </div>
@@ -325,7 +325,7 @@ class HTMLHelper {
               <article class="tile is-child notification">
                 <p class="title">${entry.title}</p>
                 <figure class="image">
-                  <img id="entry-main-photo" src= ${entryMainPhoto}>
+                  <img id="entry-main-photo" class="resize" src= ${entryMainPhoto}>
                 </figure>
               </article>
             </div>
@@ -350,7 +350,7 @@ class HTMLHelper {
        </div>
          <div class="tile column is-6 is-parent is-multiline ">
            <article class="tile is-child notification">
-           <p class="title">Photos</p>
+           <p class="title">Photos <button id= "add-pic-to-entry" class= "button is-success">Add Photo</button></p>
             <div id="entry-photo-container" class="columns is-multiline">
          <!-- this is where entry photos end up -->
             </div>
@@ -438,6 +438,7 @@ class HTMLHelper {
               </label>
             </div>
             </div> -->
+
         </div>
 
         </section>
