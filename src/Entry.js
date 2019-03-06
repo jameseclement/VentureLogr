@@ -13,7 +13,7 @@ class Entry {
     let entryUl = document.querySelector("#entry-ul")
     let entryLi = document.createElement("li")
     entryLi.classList.add("button", "is-text")
-    let truncatedEntry = entry.story.substring(0,20)
+    let truncatedEntry = entry.story.substring(0,45)
     entryLi.innerHTML = `${entry.title} - ${truncatedEntry}...`
     entryUl.appendChild(entryLi)
     entryLi.addEventListener("click", ()=> HTMLHelper.renderEntryShow(entry, trip))
