@@ -21,39 +21,46 @@ class Entry {
   }
 
   static addListen () {
-    let entryEditBtn = document.querySelector('#entry-add-btn')
-    let entryDelBtn = document.querySelector('#entry-del-btn')
-
-    entryModalBackground.addEventListener('click', () => {
-      entryModal.classList.toggle('is-active')
-    })
-
-    entryModalClose.addEventListener('click', () => {
-      entryModal.classList.toggle('is-active')
-    })
-
-    entryCnclBtn.addEventListener('click', () => {
-      entryModal.classList.toggle('is-active')
-    })
-
-    entryEditBtn.addEventListener('click', () => {
-      entryModal.classList.toggle('is-active')
-      this.editEntry(this)
-    })
-
-    entryDelBtn.addEventListener('click', () => {
-      let choice = window.confirm('Are you sure you want to delete this trip? This cannot be undone!')
-      if (choice) {
-        this.deleteEntry().bind(this)
-      }
-    })
-
-
-
-    let addPhotoBtn = document.querySelector('#add-photo-btn')
+    // let entryModal
+    // let entryModalBackground
+    // let entryModalClose
+    // let entryCnclBtn
+    // let entryEditBtn = document.querySelector('#entry-add-btn')
+    // let entryDelBtn = document.querySelector('#entry-del-btn')
+    //
+    // entryModalBackground.addEventListener('click', () => {
+    //   entryModal.classList.toggle('is-active')
+    // })
+    //
+    // entryModalClose.addEventListener('click', () => {
+    //   entryModal.classList.toggle('is-active')
+    // })
+    //
+    // entryCnclBtn.addEventListener('click', () => {
+    //   entryModal.classList.toggle('is-active')
+    // })
+    //
+    // entryEditBtn.addEventListener('click', () => {
+    //   entryModal.classList.toggle('is-active')
+    //   this.editEntry(this)
+    // })
+    //
+    // entryDelBtn.addEventListener('click', () => {
+    //   let choice = window.confirm('Are you sure you want to delete this trip? This cannot be undone!')
+    //   if (choice) {
+    //     this.deleteEntry().bind(this)
+    //   }
+    // })
+    //
+    //
+    // let photoModal
+    // let photoModalBackground
+    // let photoModalClose
+    // let photoCnclBtn
+    // let addPhotoBtn = document.querySelector('#add-photo-btn')
 
     addPhotoBtn.addEventListener('click', () => {
-      add photo
+      // add photo
     })
 
 
