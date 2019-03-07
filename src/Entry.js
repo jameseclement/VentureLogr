@@ -9,7 +9,7 @@ class Entry {
   }
 
   static renderEntryList(trip) {
-    
+
     fetch(`http://localhost:3000/api/v1/trips/${trip.id}`)
     .then(res => res.json())
     .then(trip => {
@@ -26,11 +26,12 @@ class Entry {
   }
 
   // adds listeners on entry show page
-  static addListen (entry, trip) {
-    let entryEditModal = document.querySelector('.modal')
-    let entryModalBackground = document.querySelector('.modal-background')
-    let entryModalClose = document.querySelector('#add-entry-close')
-    let entryCnclBtn = document.querySelector('#entry-add-cancel')
+  static addListen (entry, trip){
+
+    let entryEditModal = document.querySelector("#edit-entry-modal")
+    let entryModalBackground = entryEditModal.children[0]
+    let entryModalClose = document.querySelector('#edit-entry-close')
+    let entryCnclBtn = document.querySelector('#entry-edit-cancel')
     let entryEditBtn = document.querySelector('#entry-edit-btn')
     let entryDelBtn = document.querySelector('#entry-del-btn')
 
@@ -48,8 +49,22 @@ class Entry {
 
     entryEditBtn.addEventListener('click', () => {
       entryEditModal.classList.toggle('is-active')
-      Entry.editEntry(entry)
+      let title = document.querySelector("#entry-edit-title")
+      title.value= entry.title
+
+      let story = document.querySelector("#entry-edit-story")
+      story.value = entry.story
+      let date = document.querySelector("#entry-edit-date")
+      date.value = entry.date
+
     })
+
+    let saveEntryButton = document.querySelector("#entry-edit-save")
+    saveEntryButton.addEventListener("click", () => {
+      entryEditModal.classList.toggle('is-active')
+      Entry.editEntry(entry.id, trip)
+    })
+    // saveEntryButton.addEventListener("click", Entry.editEntry(entry, title, story, date))
 
     entryDelBtn.addEventListener('click', () => {
       let choice = window.confirm('Are you sure you want to delete this entry? This cannot be undone!')
@@ -104,6 +119,29 @@ class Entry {
       })
     })
   }
+
+  static editEntry(entry_id, trip){
+    let title = document.querySelector("#entry-edit-title").value
+    let story = document.querySelector("#entry-edit-story").value
+    let date = document.querySelector("#entry-edit-date").value
+
+    let data = {title: title, story: story, date: date}
+
+    fetch(`http://localhost:3000/api/v1/entries/${entry_id}`,{
+    method: "PATCH",
+    headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json"
+      },
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(entry => {
+      let entryInstance = new Entry(entry)
+      let tripInstance = new Trip(entry.trip)
+      HTMLHelper.renderEntryShow(entryInstance, tripInstance)}
+    )
+    }
 
   static deleteEntry(entry, trip){
     fetch(`http://localhost:3000/api/v1/entries/${entry.id}`,{

@@ -378,7 +378,13 @@ class HTMLHelper {
   }
 
   static renderEntryShow(entry, trip) {
-
+    let editForm = document.querySelector('#edit-entry-modal')
+    let section = document.querySelector('section')
+    if (editForm) {
+      section.removeChild(editForm)
+    }
+    // document.querySelector('.section').innerHTML = ''
+    HTMLHelper.renderEditEntryForm()
     fetch(`http://localhost:3000/api/v1/entries/${entry.id}`)
       .then(res => res.json())
       .then(entry => {
@@ -475,7 +481,7 @@ class HTMLHelper {
       <div class="modal-background"></div>
       <div class="modal-card">
         <header class="modal-card-head">
-          <p class="modal-card-title">Modal title</p>
+          <p class="modal-card-title">Add Entry</p>
           <button id="add-entry-close" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
@@ -483,21 +489,21 @@ class HTMLHelper {
           <div class="field">
             <label class="label">Title</label>
             <div class="control">
-              <input class="input" type="text" placeholder="e.g The Catacombs">
+              <input id="entry-input-title" class="input" type="text" placeholder="e.g The Catacombs">
             </div>
           </div>
 
           <div class="field">
           <label class="label">Story</label>
           <div class="control">
-          <textarea class="textarea" placeholder="Today we explored the catacombs under Paris..."></textarea>
+          <textarea id="entry-input-story" class="textarea" placeholder="Today we explored the catacombs under Paris..."></textarea>
           </div>
           </div>
 
           <div class="field">
             <label class="label">Date</label>
             <div class="control">
-              <input class="input" type="date">
+              <input class="input" id="entry-input-date" type="date">
             </div>
           </div>
         </div>
@@ -514,4 +520,54 @@ class HTMLHelper {
     let section = document.querySelector('.section')
     section.appendChild(modalDiv)
   }
+
+  static renderEditEntryForm() {
+    let modalDiv = document.createElement('div')
+    modalDiv.className = 'modal'
+    modalDiv.id = "edit-entry-modal"
+    modalDiv.innerHTML = `
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Edit Entry</p>
+          <button id="edit-entry-close" class="delete" aria-label="close"></button>
+        </header>
+        <section class="modal-card-body">
+          <div class="content">
+          <div class="field">
+            <label class="label">Title</label>
+            <div class="control">
+              <input id="entry-edit-title" class="input" type="text" placeholder="e.g The Catacombs">
+            </div>
+          </div>
+
+          <div class="field">
+          <label class="label">Story</label>
+          <div class="control">
+          <textarea id="entry-edit-story" class="textarea" placeholder="Today we explored the catacombs under Paris..."></textarea>
+          </div>
+          </div>
+
+          <div class="field">
+            <label class="label">Date</label>
+            <div class="control">
+              <input class="input" id="entry-edit-date" type="date">
+            </div>
+          </div>
+        </div>
+
+        </section>
+        <footer class="modal-card-foot">
+          <button id="entry-edit-save" class="button is-success">Edit Entry</button>
+          <button id="entry-edit-cancel" class="button">Cancel</button>
+        </footer>
+      </div>
+    </div>`
+
+
+    let section = document.querySelector('.section')
+    section.appendChild(modalDiv)
+  }
+
+
 }
