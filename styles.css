@@ -24,8 +24,8 @@ canvas.mapboxgl-canvas {
 
 #map {
   position: relative;
-  top:50px;
-  bottom:0;
+  top: 20px;
+  margin-bottom: 75px;
   height: 600px;
 }
 

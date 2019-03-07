@@ -11,18 +11,18 @@ class HTMLHelper {
   }
 
   static renderMap () {
-    let section = document.querySelector('.section')
+    let container = document.querySelector('#main-container')
     let mapDiv = document.createElement('div')
     mapDiv.id = 'map'
     mapDiv.class = 'container-fluid'
-    section.appendChild(mapDiv)
+    container.appendChild(mapDiv)
 
     mapboxgl.accessToken = config["apiKey"]
     let map = new mapboxgl.Map({
       container: 'map', // container id
       style: 'mapbox://styles/mapbox/basic-v9', //hosted style id
       center: [0, 25], // starting position
-      zoom: 2 // starting zoom
+      zoom: 1.5 // starting zoom
     })
     let geojson = {
       type: 'FeatureCollection',
@@ -456,9 +456,9 @@ class HTMLHelper {
 
       document.body.scrollTop = 0;
       document.documentElement.scrollTop = 0
-        Entry.addListen(entry, trip)
-        Entry.renderEntryList(trip)
-        Photo.renderEntryPhotos(entry)
+      Entry.addListen(entry, trip)
+      Entry.renderEntryList(trip)
+      Photo.renderEntryPhotos(entry)
 
       let a = document.createElement('a')
       a.innerText = 'Back to Trip'
@@ -514,4 +514,62 @@ class HTMLHelper {
     let section = document.querySelector('.section')
     section.appendChild(modalDiv)
   }
+
+
+  static renderAddPhotoForm () {
+    console.log('photo form')
+    let modalDiv = document.createElement('div')
+    modalDiv.className = 'modal'
+    modalDiv.id = 'add-photo-modal'
+    modalDiv.innerHTML = `
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head">
+        <p class="modal-card-title">Modal title</p>
+        <button id="add-photo-close" class="delete" aria-label="close"></button>
+      </header>
+      <section class="modal-card-body">
+        <div class="content">
+        <form enctype="multipart/form-data">
+
+
+
+        <div class="field">
+          <label class="label">Photos:</label>
+          <div class="file has-name is-small">
+            <label class="file-label">
+              <input id="add-photo-file" class="file-input" type="file" name="image" accept="image/*">
+              <span class="file-cta">
+                <span class="file-icon">
+                  <i class="fas fa-upload"></i>
+                </span>
+                <span class="file-label">
+                  Choose an image to upload
+                </span>
+                <span id="file-name" class="file-name">
+
+                </span>
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      </section>
+      <footer class="modal-card-foot">
+        <button id="add-photo-save" class="button is-success">Save Entry</button>
+        <button id="add-photo-cancel" class="button">Cancel</button>
+      </footer>
+      </form>
+    </div>`
+
+    let section = document.querySelector('.section')
+    section.appendChild(modalDiv)
+  }
 }
+
+// saving for white space in function directly above
+// <div class="field">
+//   <label class="label">Caption</label>
+//   <div class="control">
+//     <input id="add-photo-caption" class="input" type="text" placeholder="e.g The Seine at dusk.">
+// </div>
