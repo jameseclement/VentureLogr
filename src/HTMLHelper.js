@@ -10,6 +10,82 @@ class HTMLHelper {
     Trip.fetchTrips()
   }
 
+  static renderMap () {
+    let section = document.querySelector('.section')
+    let mapDiv = document.createElement('div')
+    mapDiv.id = 'map'
+    mapDiv.class = 'container-fluid'
+    section.appendChild(mapDiv)
+
+    mapboxgl.accessToken = config["apiKey"]
+    let map = new mapboxgl.Map({
+      container: 'map', // container id
+      style: 'mapbox://styles/mapbox/basic-v9', //hosted style id
+      center: [0, 25], // starting position
+      zoom: 2 // starting zoom
+    })
+    let geojson = {
+      type: 'FeatureCollection',
+      features: [{
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [113.9213, -0.7893]
+        },
+        properties: {
+          title: 'Indonesia',
+          description: 'Fall 2016'
+        }
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [138.2529, 36.2048]
+        },
+        properties: {
+          title: 'Japan',
+          description: 'Spring 2016'
+        }
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [133.7751, -25.2744]
+        },
+        properties: {
+          title: 'Australia',
+          description: 'Summer 2016'
+        }
+      },
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'Point',
+          coordinates: [22.9375, -30.5595]
+        },
+        properties: {
+          title: 'South Africa',
+          description: 'Winter 2017'
+        }
+      }]
+    }
+    geojson.features.forEach(function(marker) {
+
+      // create a HTML element for each feature
+      let el = document.createElement('div');
+      el.className = 'marker';
+
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+      .setLngLat(marker.geometry.coordinates)
+      .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+      .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+      .addTo(map);
+    })
+  }
+
   static renderHome() {
     let container = document.querySelector('#main-container')
     // remember nothing inside innerHTML can have an event listener added inside this function. create it separately and append!
