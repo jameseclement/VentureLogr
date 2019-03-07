@@ -20,7 +20,8 @@ class Entry {
     let truncatedEntry = entry.story.substring(0,45)
     entryLi.innerHTML = `${entry.title} - ${truncatedEntry}...`
     entryUl.appendChild(entryLi)
-    entryLi.addEventListener("click", ()=> HTMLHelper.renderEntryShow(entry, trip))
+    entryLi.addEventListener("click", ()=> { HTMLHelper.renderEntryShow(entry, trip)
+    HTMLHelper.renderAddPhotoForm()})
     })
   })
   }
@@ -74,15 +75,51 @@ class Entry {
     })
 
 
-    // let photoModal
-    // let photoModalBackground
-    // let photoModalClose
-    // let photoCnclBtn
-    // let addPhotoBtn = document.querySelector('#add-photo-btn')
-    //
-    // addPhotoBtn.addEventListener('click', () => {
-    //   // add photo
-    // })
+    let photoModal = document.querySelector('#add-photo-modal')
+    let photoModalBackground = photoModal.children[0]
+    let photoModalClose = document.querySelector('#add-photo-close')
+    let photoCnclBtn = document.querySelector('#add-photo-cancel')
+    let addPhotoBtn = document.querySelector('#add-photo-btn')
+    let photoSaveBtn = document.querySelector('#add-photo-save')
+
+    photoModalBackground.addEventListener('click', () => {
+      photoModal.classList.toggle('is-active')
+    })
+
+    photoModalClose.addEventListener('click', () => {
+      console.log('i was pressed')
+      photoModal.classList.toggle('is-active')
+    })
+
+    photoCnclBtn.addEventListener('click', () => {
+      photoModal.classList.toggle('is-active')
+    })
+
+    addPhotoBtn.addEventListener('click', () => {
+      photoModal.classList.toggle('is-active')
+    })
+
+    photoSaveBtn.addEventListener('click', () => {
+      photoModal.classList.toggle('is-active')
+      Photo.postPhoto()
+    })
+
+    let photoName = document.querySelector('#file-name')
+    let photoInput = document.querySelector('#add-photo-file')
+
+    photoInput.addEventListener('change', showFileName)
+
+    function showFileName(e) {
+
+      // the change event gives us the input it occurred in
+      let photoInput = e.srcElement
+
+      // the input has an array of files in the `files` property, each one has a name that you can use. We're just using the name here.
+      let fileName = photoInput.files[0].name
+
+      // use fileName however fits your app best, i.e. add it into a div
+      photoName.textContent = 'File name: ' + fileName;
+    }
   }
 
 

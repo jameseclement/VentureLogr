@@ -5,52 +5,77 @@ class Photo {
     this.entry_id = photo.entry_id
   }
 
-//used to get/show sample photos from a whole trip
-    static fetchSamplePhotos(trip) {
-      fetch(`http://localhost:3000/api/v1/trips/${trip.id}`)
-    .then(res => res.json())
-    .then((trip) => {trip.photos.splice(0,9).forEach(function(photo){
-        let cardContainer = document.querySelector('#trip-photo-container')
-        let card = document.createElement('div')
-        card.classList.add('card', 'column', 'is-4')
-        card.innerHTML = `
-        <div class="card-image">
-          <figure class="image is-4by3">
-            <img src="${photo.url}" alt="Placeholder image">
-          </figure>
-        </div>
-        `
-        cardContainer.appendChild(card)
-        card.addEventListener('click', (e)=> {
-          let tripMainPhoto = document.querySelector("#trip-main-photo")
-            tripMainPhoto.src = e.target.src
+  //used to get/show sample photos from a whole trip
+  static fetchSamplePhotos(trip) {
+    fetch(`http://localhost:3000/api/v1/trips/${trip.id}`)
+  .then(res => res.json())
+  .then((trip) => {trip.photos.splice(0,9).forEach(function(photo){
+      let cardContainer = document.querySelector('#trip-photo-container')
+      let card = document.createElement('div')
+      card.classList.add('card', 'column', 'is-4')
+      card.innerHTML = `
+      <div class="card-image">
+        <figure class="image is-4by3">
+          <img src="${photo.url}" alt="Placeholder image">
+        </figure>
+      </div>
+      `
+      cardContainer.appendChild(card)
+      card.addEventListener('click', (e)=> {
+        let tripMainPhoto = document.querySelector("#trip-main-photo")
+          tripMainPhoto.src = e.target.src
         })
       })
     })
-
   }
 
 
-    static renderEntryPhotos(entry){
-      entry.photos.forEach(function(photo){
-        let cardContainer = document.querySelector('#entry-photo-container')
-        let card = document.createElement('div')
-        card.classList.add('card', 'column', 'is-4')
-        card.innerHTML = `
-        <div class="card-image">
-        <figure class="image is-4by3">
-        <img src="${photo.url}" alt="Placeholder image">
-        </figure>
-        </div>
-        `
-        cardContainer.appendChild(card)
-        card.addEventListener('click', (e)=> {
-          let entryMainPhoto = document.querySelector("#entry-main-photo")
-          entryMainPhoto.src = e.target.src
-        })
+  static renderEntryPhotos(entry){
+    entry.photos.forEach(function(photo){
+      let cardContainer = document.querySelector('#entry-photo-container')
+      let card = document.createElement('div')
+      card.classList.add('card', 'column', 'is-4')
+      debugger
+      card.innerHTML = `
+      <div class="card-image">
+      <figure class="image is-4by3">
+      <img src="${photo.url}" alt="Placeholder image">
+      </figure>
+      </div>
+      `
+      cardContainer.appendChild(card)
+      card.addEventListener('click', (e)=> {
+        let entryMainPhoto = document.querySelector("#entry-main-photo")
+        entryMainPhoto.src = e.target.src
       })
-    }
+    })
   }
+
+  static postPhoto () {
+    // let caption = document.querySelector('#add-photo-caption')
+    let caption = 'fun times'
+    let url = 'www'
+    let entry_id = 1
+    let image = document.querySelector('input[type="file"]')
+    let formData = new FormData()
+    formData.append('caption', caption)
+    formData.append('url', url)
+    formData.append('entry_id', entry_id)
+    formData.append('image', image.files[0])
+    fetch('http://localhost:3000/api/v1/photos', {
+      method: 'POST',
+      body: formData,
+      headers: {
+          Accept: "application/json"
+      }
+    })
+    .then(res => res.json())
+    .then(photo => {
+      console.log(photo)
+      document.querySelector('input[type="file"]').value = ''
+    })
+  }
+}
       // if (trip.photos.length === 0){
       //   let photoCards = document.querySelectorAll(`.sample-image`)
       //   photoCards.forEach(card => card.src = 'https://image.flaticon.com/icons/png/512/3/3901.png')
